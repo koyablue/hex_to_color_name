@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"hex_to_color_name/internal/app/hexToColorName/pkg/colorName"
 	"os"
 )
 
@@ -19,4 +20,5 @@ func main() {
 	scanner.Scan()
 	hex := scanner.Text()
 	fmt.Println(hex)
+	colorName.GetColorName()
 }
