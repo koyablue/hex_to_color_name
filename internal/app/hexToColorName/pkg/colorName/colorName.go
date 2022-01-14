@@ -1,6 +1,7 @@
 package colorName
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -18,7 +19,7 @@ type Color struct {
 	Name         string  `json:"name"`
 	Hex          string  `json:"hex"`
 	Rgb          Rgb     `json:"rgb"`
-	Distance     int     `json:"distance"`
+	Distance     float64 `json:"distance"`
 	Luminance    float64 `json:"luminance"`
 	RequestedHex string  `json:"requestedHex"`
 }
@@ -55,8 +56,12 @@ func GetColorName() {
 	defer response.Body.Close()
 	responseBody, err := ioutil.ReadAll(response.Body)
 
+	var colors Colors
+	if err := json.Unmarshal(responseBody, &colors); err != nil {
+		log.Fatalln(err)
+	}
+	fmt.Println(colors.Colors[0].Name)
+
 	//TODO: convert return value to struct then return color name(str)
 
-	//just output response for now.
-	fmt.Println(string(responseBody))
 }
