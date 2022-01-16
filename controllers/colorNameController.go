@@ -11,7 +11,7 @@ import (
 
 var API_BASE_URL string = "https://api.color.pizza/v1/"
 
-func GetColorName(hexColorCode string) string {
+func GetColorName(hexColorCode string) models.ColorNameApiResponse {
 	baseUrl, err := url.Parse(API_BASE_URL)
 	if err != nil {
 		log.Fatalln(err)
@@ -35,7 +35,5 @@ func GetColorName(hexColorCode string) string {
 		log.Fatalln(err)
 	}
 
-	colorName := apiResponse.GetColor().GetName()
-
-	return colorName
+	return apiResponse
 }

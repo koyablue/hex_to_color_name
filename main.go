@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"hex_to_color_name/controllers"
+	"hex_to_color_name/services"
 	"log"
 	"os"
 
@@ -33,5 +34,7 @@ func main() {
 	scanner.Scan()
 	hexColorCode := scanner.Text()
 
-	fmt.Println(controllers.GetColorName(hexColorCode))
+	apiResponse := controllers.GetColorName(hexColorCode)
+
+	fmt.Println(services.GetColorName(&apiResponse))
 }
